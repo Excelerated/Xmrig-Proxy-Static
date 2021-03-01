@@ -1,0 +1,32 @@
+For anyone having trouble with this in the future you just need to follow the steps below (Linux/GCC):
+     1. Install dependencies: sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev wget
+     2. Clone the xmrig-proxy repo AND the xmrig repo from github
+     3. Copy the scripts folder from the xmrig repo (xmrig/scripts) into the xmrig-proxy folder (you can delete the xmrig repo after this)
+     4. Move into the xmrig-proxy/scripts folder and run  ./build_deps.sh
+     5. Move back into the xmrig-proxy directory and run mkdir build
+     6. Modify the cmake/flags.cmake file as instructed in the bottom segment
+     7. Run: cmake .. -DXMRIG_DEPS=scripts/deps -DBUILD_STATIC=on
+     8. Run: make -j$(nproc)
+     9. Mine! Profit!!
+     10. Send some coin to 44n9XZUnKVFLs9DJCmxW4iZvSHKrS2fMnfWKjoMTAWXwPPBjk8p1b1yPgNndhARb5g5G1kEcVRSEeNyiz1ZJwDLwN6TMXy1
+     11. Profit More!!!
+
+This is for linux gnu/gcc compilers. For other compilers (MSVC, Clang) or system these instructions will need minor modifications. Needs to run root/sudo to install dependencies. Executable is in xmrig-proxy/build directory. Happy Mining!
+
+*Alternatively I wrote a shell script that does all of this at:
+	https://github.com/Excelerated/Xmrig-Proxy-Static/blob/main/StaticBuilder.sh
+
+=====================================
+Make it so the lines
+----------------
+    if (BUILD_STATIC)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
+    endif()
+-----------------
+is below the line
+-----------------
+    else()
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++")
+    endif()
+------------------
+======================================
