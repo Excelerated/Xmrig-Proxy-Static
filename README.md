@@ -1,2 +1,2 @@
 # Xmrig-Proxy-Static
-Monero Ocean Xmrig-Proxy Statically compiled
+Xmrig-Proxy Statically compiled build files. Applicable to Monero Ocean Proxy as well.
